@@ -26,10 +26,14 @@ class Db{
     async getAllData(){
         try {
             const response = await new Promise((resolve,reject)=>{
-                const query = "SELECT * FROM "
+                const query = "SELECT * FROM user;";
+                connection.query(query,(err,results)=>{
+                   if(err) reject(new Error(err.message));
+                   resolve(results); 
+                })
             });
         } catch (error) {
-            
+            console.log(error);
         }
     }
 }
