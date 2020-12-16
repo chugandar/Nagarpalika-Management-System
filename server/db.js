@@ -23,17 +23,19 @@ class Db{
     static getDbInstance(){
         return instance ? instance : new Db();
     }
-    async getAllData(){
+    async getAllWards(){
         try {
             const response = await new Promise((resolve,reject)=>{
-                const query = "SELECT * FROM user;";
+                const query = "SELECT WARD_ID,DETAILS FROM complaint;";
                 connection.query(query,(err,results)=>{
                    if(err) reject(new Error(err.message));
                    resolve(results); 
                 })
             });
+            return response;
         } catch (error) {
             console.log(error);
         }
     }
 }
+module.exports = Db;
