@@ -11,9 +11,11 @@ app.use(express.urlencoded({ extended : false}));
 //create
 app.post('/login',(req,res) => {
     try {
-        const {USERNAME,PASSWORD} = req.body;
+        console.log(req.body);
+        const {uid,pwd} = req.body;
+        //console.log(uid);
         const db = Db.getDbInstance();
-        const result = db.getLogin(USERNAME,PASSWORD);
+        const result = db.getLogin(uid,pwd);
         result
         .then(data => res.json({data : data}))
         .catch(err => console.log(err));        
@@ -35,6 +37,13 @@ app.get('/wards',(req,res)=>{
         console.log(err);
     }
 
+})
+app.get('/login',(req,res) => {
+    try {
+        const db = Db.getDbInstance(); 
+    } catch (error) {
+        console.log(error);
+    }
 })
 app.get('/',(req,res)=>{
     try{

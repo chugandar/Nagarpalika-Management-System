@@ -38,15 +38,24 @@ class Db{
     async getLogin(username,password){
         try {
             const response = await new Promise((resolve,reject) => {
-                const query = "SELECT *FROM USER WHERE USERNAME = ? AND PASSWORD = ?;";
-                connection.query(query,[username,password],(err,result) => {
+                const query = `SELECT *FROM usertable WHERE USERNAME='${username}' and PASSWORD='${password}';`;
+                connection.query(query,(err,result) => {
                     if(err) reject(new Error(err.message));
-                    resolve(results);
+                    console.log(result);
+                    resolve(result);
                 })
             });
             return response;
         } catch (error) {
             console.log(error);
+        }
+    }
+    async getAllUsers(){
+        try {
+            
+        } catch (error) {
+            console.log(error);
+            
         }
     }
 }

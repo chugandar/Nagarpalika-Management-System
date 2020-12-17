@@ -44,8 +44,16 @@ $(() => {
 			}),
 		}).then(response=>response.json())
 		.then(data=>{
-			if(data.length===0) console.log(false);
-			else console.log(true);
+			var output = data['data'];
+			console.log(output);
+			if(data===undefined || data===null|| output.length===0){
+				console.log(false);
+				$('#wrong').text("Wrong Credentials")
+			}
+			else {
+				console.log(true+" "+output.length);
+				window.location.href="http://www.google.com"
+			}
 		})
 		
 	})
