@@ -9,15 +9,31 @@ app.use(express.json());
 app.use(express.urlencoded({ extended : false}));
 
 //create
-
+app.post('/login',(req,res) => {
+    try {
+        const {USERNAME,PASSWORD} = req.body;
+        const db = Db.getDbInstance();
+        const result = db.getLogin(USERNAME,PASSWORD);
+        result
+        .then(data => res.json({data : data}))
+        .catch(err => console.log(err));        
+    } catch (error) {
+        console.log(error);
+    }    
+})
 
 //read
 app.get('/wards',(req,res)=>{
+    try{
     const db = Db.getDbInstance();
     const result = db.getAllWards();
     result
     .then(data => res.json({data: data}))
     .catch(err=>console.log(err));
+    }
+    catch(err){
+        console.log(err);
+    }
 
 })
 app.get('/',(req,res)=>{

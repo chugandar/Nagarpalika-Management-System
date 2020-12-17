@@ -1,5 +1,7 @@
 // $(function() {
 
+//const { response } = require("express");
+
 //     $('#login-form-link').click(function(e) {
 // 		$("#login-form").delay(100).fadeIn(100);
 //  		$("#register-form").fadeOut(100);
@@ -31,7 +33,7 @@ $(() => {
 
 		console.log(event.target.Username.value);
 		console.log(event.target.Password.value);
-		fetch('/api/login',{
+		fetch('http://localhost:5000/login',{
 			method:'POST',
 			headers:{
 				'content-type':"application/json"
@@ -40,8 +42,10 @@ $(() => {
 				uid:event.target.Username.value,
 				pwd:event.target.Password.value
 			}),
-		}).then(e=>e.json()).then(response=>{
-
+		}).then(response=>response.json())
+		.then(data=>{
+			if(data.length===0) console.log(false);
+			else console.log(true);
 		})
 		
 	})
