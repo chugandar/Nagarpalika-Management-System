@@ -23,6 +23,19 @@ app.post('/login',(req,res) => {
         console.log(error);
     }    
 })
+app.post('/register',(req,res) => {
+    try {
+        const {uid,pwd,wid} = req.body;
+        console.log("Username "+uid);
+        const db = Db.getDbInstance();
+        const result = db.register(uid,pwd,wid);
+        result
+        .then(data => res.json({data : data}))
+        .catch(err => console.log());
+    } catch (error) {
+        console.log(error);
+    }
+})
 
 //read
 app.get('/wards',(req,res)=>{

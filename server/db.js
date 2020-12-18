@@ -38,7 +38,23 @@ class Db{
     async getLogin(username,password){
         try {
             const response = await new Promise((resolve,reject) => {
-                const query = `SELECT *FROM usertable WHERE USERNAME='${username}' and PASSWORD='${password}';`;
+                const query = `SELECT *FROM usertable WHERE USERNAME='${username}' and USER_ID='${password}';`;
+                connection.query(query,(err,result) => {
+                    if(err) reject(new Error(err.message));
+                    console.log(result);
+                    resolve(result);
+                })
+            });
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async register(username,password,wardid){
+        try {
+            console.log(username+""+wardid);
+            const response = await new Promise((resolve,reject) => {
+                const query = `INSERT INTO usertable VALUES('${password}','${username}','${wardid}');`;
                 connection.query(query,(err,result) => {
                     if(err) reject(new Error(err.message));
                     console.log(result);
