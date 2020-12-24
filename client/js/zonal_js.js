@@ -8,8 +8,8 @@ $(() => {
             $('#zonal-table').append(`<tr><td class='no-data' colspan = '5'></td></tr>`);
             return;
         }
-        data.forEach(function({ZONE_ID,WARD_ID,DETAILS}) {
-            $('#zonal-table').append(`<tr><td>${WARD_ID}</td><td>${DETAILS}</td></tr>`)
+        data.forEach(function({ZONE_ID,WARD_ID,Complaints}) {
+            $('#zonal-table').append(`<tr><td>${ZONE_ID}</td><td>${WARD_ID}</td><td>${Complaints}</td></tr>`)
         });        
     }
 })

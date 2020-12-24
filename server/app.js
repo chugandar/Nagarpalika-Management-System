@@ -51,6 +51,17 @@ app.get('/wards',(req,res)=>{
     }
 
 })
+app.get('/zones',(req,res) =>{
+    try {
+        const db = Db.getDbInstance();
+        const result = db.getZones();
+        result
+        .then(data => res.json({data : data}))
+        .catch(err => console.log(err));
+    } catch (error) {
+        console.log(error);
+    }
+})
 app.get('/login',(req,res) => {
     try {
         const db = Db.getDbInstance(); 
