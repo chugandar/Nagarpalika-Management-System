@@ -31,7 +31,7 @@ app.post('/register',(req,res) => {
         const result = db.register(uid,pwd,wid);
         result
         .then(data => res.json({data : data}))
-        .catch(err => console.log());
+        .catch(err => console.log(err));
     } catch (error) {
         console.log(error);
     }

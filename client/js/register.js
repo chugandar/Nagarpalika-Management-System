@@ -20,7 +20,7 @@ $(() => {
 		.then(data => {
             var output = data['data'];
             console.log(output);
-            window.location.href="./ind.html";
+            window.location.href="./login.html";
         })
     })
 })

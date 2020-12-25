@@ -53,7 +53,7 @@ class Db{
     async getZones(){
         try {
             const response = await new Promise((resolve,reject) => {
-                const query = `SELECT zone.ZONE_ID, ward.WARD_ID,COUNT(complaint.STATUS) AS Complaints FROM (zone NATURAL JOIN ward) NATURAL JOIN complaint WHERE complaint.STATUS=0 GROUP BY zone.ZONE_ID;`;
+                const query = `SELECT zone.ZONE_ID, ward.WARD_ID,COUNT(complaint.STATUS) AS Complaints FROM (zone NATURAL JOIN ward) NATURAL JOIN complaint WHERE complaint.STATUS=0 GROUP BY zone.ZONE_ID,ward.WARD_ID;`;
                 connection.query(query,(err,result) => {
                     if(err) reject(new Error(err.message));
                     console.log(result);
