@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const dotenv = require('dotenv');
+const jwt = require('jsonwebtoken');
 const Db = require('./db');
 dotenv.config();
 app.use(cors());
@@ -36,6 +37,30 @@ app.post('/register',(req,res) => {
         console.log(error);
     }
 })
+app.post('/displaycomplaints',(req,res) => {
+    try {
+        const {uid} = req.body;
+        const db = Db.getDbInstance();
+        const result = db.getComplaints(uid);
+        result
+        .then(data => res.json({data: data}))
+        .catch(err => console.log(err));
+    } catch (error) {
+        console.log(error);
+    }
+})
+app.post('/newcomplain',(req,res) => {
+    try {
+        const {cid,uid,wid,details} = req.body;
+        const db = Db.getDbInstance();
+        const result = db.regComplaint(cid,uid,wid,details);
+        result
+        .then(data => res.json({data :data}))
+        .catch(err => console.log(err));
+    } catch (error) {
+        console.log(error);
+    }
+})
 
 //read
 app.get('/wards',(req,res)=>{
@@ -55,6 +80,17 @@ app.get('/zones',(req,res) =>{
     try {
         const db = Db.getDbInstance();
         const result = db.getZones();
+        result
+        .then(data => res.json({data : data}))
+        .catch(err => console.log(err));
+    } catch (error) {
+        console.log(error);
+    }
+})
+app.get('/complaints',(req,res) => {
+    try {
+        const db = Db.getDbInstance();
+        const result = db.getId();
         result
         .then(data => res.json({data : data}))
         .catch(err => console.log(err));

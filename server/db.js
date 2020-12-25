@@ -65,6 +65,51 @@ class Db{
             console.log(error);
         }
     }
+    async getComplaints(uid){
+        try {
+            const response = await new Promise((resolve,reject) => {
+                const query = `SELECT * FROM complaint WHERE USER_ID = '${uid}';`;
+                connection.query(query,(err,result) => {
+                    if(err) reject(new Error(err.message));
+                    console.log(result);
+                    resolve(result);
+                })
+            });
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async regComplaint(cid,uid,wid,details){
+        try {
+            const response = await new Promise((resolve,reject) => {
+                const query = `INSERT INTO complaint VALUES('${cid}','${uid}','${wid}',0,'${details}');`;
+                connection.query(query,(err,result) => {
+                    if(err) reject(new Error(err.message));
+                    console.log(result);
+                    resolve(result);
+                })
+            });
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async getId(){
+        try {
+            const response = await new Promise((resolve,reject) =>{
+                const query = `SELECT C_ID FROM complaint ORDER BY C_ID DESC LIMIT 1;`;
+                connection.query(query,(err,result) => {
+                    if(err) reject(new Error(err.message));
+                    console.log(result);
+                    resolve(result);
+                })
+            });
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
     async register(username,password,wardid){
         try {
             console.log(username+""+wardid);
