@@ -1,2 +1,2 @@
-# dbd-selfstudy
+# Nagarpalika Management System
 # Database used : MySQL
