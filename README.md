@@ -1,2 +1,2 @@
 # dbd-selfstudy
-#Database used : MySQL
+# Database used : MySQL
